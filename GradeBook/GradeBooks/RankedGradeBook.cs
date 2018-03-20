@@ -10,6 +10,7 @@
 namespace GradeBook.GradeBooks
 {
     using GradeBook.Enums;
+    using System;
 
     /// <summary>
     /// The ranked grade book.
@@ -25,6 +26,16 @@ namespace GradeBook.GradeBooks
         public RankedGradeBook(string name) : base(name)
         {
             this.Type = GradeBookType.Ranked;
+        }
+
+        public override char GetLetterGrade(double averageGrade)
+        {
+            if(Students.Count < 5)
+            {
+                throw new InvalidOperationException("Ranked Grading requires a minimum of 5 students to work");
+            }
+
+            return 'F';
         }
     }
 }
